@@ -48,7 +48,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.glide)
-    implementation(libs.androidx.activity.ktx)
 
     //test
     testImplementation(libs.junit)
@@ -61,15 +60,14 @@ dependencies {
 
     //datastore
     implementation(libs.androidx.datastore.preferences)
-    implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.datastore.preferences.rxjava2)
     implementation(libs.androidx.datastore.preferences.rxjava3)
 
     //android ktx
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.lifecycle.extensions)
-    implementation (libs.androidx.navigation.fragment.ktx.v270)
-    implementation (libs.androidx.navigation.ui.ktx.v270)
+    implementation(libs.androidx.navigation.fragment.ktx.v270)
+    implementation(libs.androidx.navigation.ui.ktx.v270)
 
     //retrofit
     implementation(libs.retrofit)
@@ -80,7 +78,6 @@ dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
 
     //media
-    val camerax_version = "1.4.0"
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
