@@ -1,6 +1,30 @@
 <resources>
     <string name="app_name">CekLadang</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_history">History</string>
+
+    //login
+    <string name="tvWelcome">Selamat Datang!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="label_invalid_email">Email tidak valid!</string>
+    <string name="hint_email">Masukkan email anda</string>
+    <string name="hint_name">Masukkan nama anda</string>
+    <string name="hint_password">Masukkan password anda</string>
+    <string name="password_short">Kata sandi minimal harus 8 karakter!</string>
+    <string name="btnlogin">Masuk</string>
+    <string name="btndaftar">Daftar</string>
+    <string name="or">Atau</string>
+
+    //daftar
+    <string name="tvRegister">Buat akun anda</string>
+    <string name="name">Name</string>
+
+    <string name="password_empty">Password tidak boleh kosong</string>
+    <string name="email_empty">Email tidak boleh kosong</string>
+    <string name="name_empty">Nama tidak boleh kosong</string>
+
+    <string name="language">Ganti Bahasa</string>
+    <string name="logout">Keluar</string>
+
 </resources>
