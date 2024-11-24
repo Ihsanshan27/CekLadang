@@ -1,22 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:background="#F6F6F6"
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#89A86E"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/greetingText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/User_Name"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/profileIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_person_24"
+            android:contentDescription="@string/profile"
+            android:padding="8dp" />
+    </LinearLayout>
+
+    <!-- Main prompt -->
+    <TextView
+        android:id="@+id/promptText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Mau analisis tanaman apa?"
+        android:textColor="#4E5D50"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/topBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Button list -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/promptText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/buttonJagung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Corn"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#89A86E"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/buttonSingkong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Cassava"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#89A86E"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/buttonKacangKedelai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Soybeans"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#89A86E"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/buttonKacangHijau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/MungBeans"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#89A86E"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/buttonWortel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Carrot"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#89A86E"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/buttonUbiJalar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Ubi"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#89A86E" />
+    </LinearLayout>
+
+    <!-- Bottom navigation -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#89A86E"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/homeIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_home_24"
+            android:contentDescription="@string/HomeIcon" />
+
+        <ImageView
+            android:id="@+id/historyIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_history_24"
+            android:contentDescription="@string/HistoryIcon"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

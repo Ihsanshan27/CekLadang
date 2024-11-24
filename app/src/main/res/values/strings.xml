@@ -3,4 +3,14 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="User_Name">Hello, Ihsan</string>
+    <string name="profile">Profile Icon</string>
+    <string name="Corn">Jagung</string>
+    <string name="Cassava">Singkong</string>
+    <string name="Soybeans">Kacang Kedelai</string>
+    <string name="MungBeans">Kacang Hijau</string>
+    <string name="Carrot">Wortel</string>
+    <string name="Ubi">Ubi Jalar</string>
+    <string name="HistoryIcon">History Icon</string>
+    <string name="HomeIcon">Home Icon</string>
 </resources>
