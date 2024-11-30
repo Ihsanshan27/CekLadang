@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -12,16 +13,18 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
 import com.canhub.cropper.CropImageView
+import com.dicoding.cekladang.R
 import com.dicoding.cekladang.databinding.ActivityAnalisisBinding
 import com.dicoding.cekladang.ui.dashboard.HistoryFragment
+import com.dicoding.cekladang.ui.result.ResultActivity
 import com.dicoding.cekladang.ui.utils.getImageUri
 
+@Suppress("DEPRECATION")
 class AnalisisActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAnalisisBinding
     private var currentImageUri: Uri? = null
-    private var result: String? = null
-//    private lateinit var imageClassifierHelper: ImageClassifierHelper
+    private var croppedImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,18 +44,36 @@ class AnalisisActivity : AppCompatActivity() {
 
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.cameraButton.setOnClickListener { startCamera() }
-//        binding.analyzeButton.setOnClickListener {
-//            currentImageUri?.let {
-//                analyzeImage(data)
-//            } ?: run {
-//                showToast(getString(R.string.empty_image_warning))
-//            }
+
+        binding.analyzeButton.setOnClickListener {
+            currentImageUri?.let {
+                Log.d(TAG, "Analyze button clicked with currentImageUri: $it")
+                analyzeImage()
+                moveToResult()
+            } ?: run {
+                Log.e(TAG, "Analyze button clicked but currentImageUri is null")
+                showToast(getString(R.string.image_classifier_failed))
+            }
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         currentImageUri?.let {
             outState.putString("imageUri", it.toString())
+        }
+    }
+
+    private fun analyzeImage() {
+        Log.d(TAG, "analyzeImage called")
+        val intent = Intent(this, ResultActivity::class.java)
+        croppedImageUri?.let { uri ->
+            Log.d(TAG, "croppedImageUri: $uri")
+            intent.putExtra(ResultActivity.IMAGE_URI, uri.toString())
+            startActivityForResult(intent, REQUEST_RESULT)
+        } ?: run {
+            Log.e(TAG, "analyzeImage: croppedImageUri is null")
+            showToast(getString(R.string.image_classifier_failed))
         }
     }
 
@@ -73,10 +94,29 @@ class AnalisisActivity : AppCompatActivity() {
 
     private fun showImage() {
         currentImageUri?.let {
+            Log.d(TAG, "showImage called with currentImageUri: $it")
             launchCropActivity(it)
-            Log.d("Image URI", "showImage: $it")
             binding.previewImageView.setImageURI(it)
+        } ?: run {
+            Log.e(TAG, "showImage: currentImageUri is null")
         }
+    }
+    private fun moveToResult() {
+        Log.d(TAG, "moveToResult called")
+        val intent = Intent(this, ResultActivity::class.java)
+        croppedImageUri?.let { uri ->
+            Log.d(TAG, "moveToResult: croppedImageUri: $uri")
+            intent.putExtra(ResultActivity.IMAGE_URI, uri.toString())
+            startActivity(intent)
+        } ?: run {
+            Log.e(TAG, "moveToResult: croppedImageUri is null")
+            showToast(getString(R.string.image_classifier_failed))
+        }
+    }
+
+    private fun showCroppedImage(uri: Uri) {
+        binding.previewImageView.setImageURI(uri)
+        croppedImageUri = uri
     }
 
     private fun launchCropActivity(uri: Uri) {
@@ -94,10 +134,14 @@ class AnalisisActivity : AppCompatActivity() {
         CropImageContract()
     ) { cropResult: CropImageView.CropResult ->
         if (cropResult.isSuccessful) {
+            Log.d(TAG, "Crop successful: ${cropResult.uriContent}")
             val croppedBitmap =
                 BitmapFactory.decodeFile(cropResult.getUriFilePath(applicationContext, true))
             binding.previewImageView.setImageBitmap(croppedBitmap)
-            currentImageUri = cropResult.uriContent
+            croppedImageUri = cropResult.uriContent
+        } else {
+            Log.e(TAG, "Crop failed: ${cropResult.error}")
+            showToast("Crop failed: ${cropResult.error?.message}")
         }
     }
 
@@ -116,9 +160,13 @@ class AnalisisActivity : AppCompatActivity() {
         }
     }
 
-    private fun analyzeImage() {
-
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    companion object {
+        const val TAG = "AnalisisActivity"
+        private const val REQUEST_RESULT = 1001
+    }
 }
 
