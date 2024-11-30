@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
+    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -50,6 +52,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.glide)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.annotation)
 
     //test
     testImplementation(libs.junit)
@@ -83,4 +86,16 @@ dependencies {
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
+
+    //crop image
+    implementation(libs.android.image.cropper)
+
+    //room
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+
+    //glide
+    implementation(libs.logging.interceptor.v4120)
+    implementation(libs.glide)
 }
