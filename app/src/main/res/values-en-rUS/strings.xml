@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CekLadang</string>
+    <string name="title_home">Home</string>
+    <string name="title_history">History</string>
+
+    <!--    login-->
+    <string name="tvWelcome">Welcome</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="label_invalid_email">Invalid email!</string>
+    <string name="hint_email">Masukkan email anda</string>
+    <string name="hint_name">Enter your email</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="password_short">Password must be at least 8 characters!</string>
+    <string name="btnlogin">Enter</string>
+    <string name="btndaftar">Register</string>
+    <string name="or">Or</string>
+
+    <!--    daftar-->
+    <string name="tvRegister">Create your account</string>
+    <string name="name">Name</string>
+
+    <string name="password_empty">Password cannot be empty</string>
+    <string name="email_empty">Email cannot be empty</string>
+    <string name="name_empty">Name cannot be empty</string>
+
+    <string name="language">Change Language</string>
+    <string name="logout">Exit</string>
+
+
+    <string name="title_choose">What kind of plant do you want to analyze?</string>
+    <string name="title_tumbuhan">Plant Name</string>
+
+
+    <string name="title_analisis">Analysis Results</string>
+    <string name="description">Description</string>
+    <string name="gallery">Gallery</string>
+    <string name="analyze">analyze</string>
+    <string name="camera">Camera</string>
+
+    <string name="btn_save">Save</string>
+    <string name="result_analisis">Analysis Results</string>
+    <string name="Title_analisis">Title Analysis</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="image_classifier_failed">Image classifier failed to initialize. See error logs for details</string>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CekLadang</string>
+    <string name="title_home">Hogar</string>
+    <string name="title_history">Historia</string>
+
+    <!--    login-->
+    <string name="tvWelcome">¡Saludos, amigos!</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseñas</string>
+    <string name="label_invalid_email">¡Número de correo electrónico válido!</string>
+    <string name="hint_email">Introduce tu Email</string>
+    <string name="hint_name">Introduce tu nombre</string>
+    <string name="hint_password">Introduce tu contraseña</string>
+    <string name="password_short">¡La contraseña debe tener al menos 8 caracteres!</string>
+    <string name="btnlogin">Ingresar</string>
+    <string name="btndaftar">Lista</string>
+    <string name="or">O</string>
+
+    <!--    daftar-->
+    <string name="tvRegister">Crea tu cuenta</string>
+    <string name="name">Nombre</string>
+
+    <string name="password_empty">La contraseña no puede estar vacía.</string>
+    <string name="email_empty">El correo electrónico no puede estar vacío.</string>
+    <string name="name_empty">El nombre no puede estar vacío</string>
+
+    <string name="language">Cambiar idioma</string>
+    <string name="logout">Salir</string>
+
+
+    <string name="title_choose">¿Qué planta quieres analizar?</string>
+    <string name="title_tumbuhan">Nombres de plantas</string>
+
+
+    <string name="title_analisis">Resultados del análisis</string>
+    <string name="description">Descripción</string>
+    <string name="gallery">Galería</string>
+    <string name="analyze">Análisis</string>
+    <string name="camera">Cámara</string>
+
+    <string name="btn_save">Ahorrar</string>
+    <string name="result_analisis">Resultados del análisis</string>
+    <string name="Title_analisis">Título del análisis</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="image_classifier_failed">Image classifier failed to initialize. See error logs for details</string>
+
+</resources>

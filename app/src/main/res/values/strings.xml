@@ -35,12 +35,12 @@
     <string name="title_analisis">Hasil Analisis</string>
     <string name="description">Deskripsi</string>
     <string name="gallery">galeri</string>
-    <string name="analyze">analyze</string>
-    <string name="camera">kamera</string>
+    <string name="analyze">Analisis</string>
+    <string name="camera">Kamera</string>
 
     <string name="btn_save">Simpan</string>
-    <string name="result_analisis">Result Analisis</string>
-    <string name="Title_analisis">Title Analisis</string>
+    <string name="result_analisis">Hasil Analisis</string>
+    <string name="Title_analisis">Judul Analisis</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
