@@ -2,37 +2,37 @@ package com.dicoding.cekladang.ui.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.cekladang.R
+import com.dicoding.cekladang.data.local.entity.Plants
+import com.dicoding.cekladang.databinding.ItemPalawijaBinding
 
 class HomeAdapter(
-    private val homeList: List<String>,
-    private val onItemClicked: (String) -> Unit,
+    private val plants: List<Plants>,
+    private val onItemClicked: (Plants) -> Unit,
 ) :
-    RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+    RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.tv_item_name)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_palawija, parent, false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = homeList[position]
-        holder.textView.text = item
-        holder.itemView.setOnClickListener {
-            onItemClicked(item)
+    inner class HomeViewHolder(private val binding: ItemPalawijaBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(plant: Plants) {
+            binding.tvItemName.text = plant.name
+            binding.root.setOnClickListener { onItemClicked(plant) } // Mengirimkan nama tanaman ke onItemClicked
         }
-        Log.d("HomeAdapter", "Binding item: ${homeList[position]}")
     }
 
-    override fun getItemCount(): Int = homeList.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+        val binding =
+            ItemPalawijaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return HomeViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+        val plant = plants[position]
+        holder.bind(plant) // Bind plant data ke ViewHolder
+        Log.d("HomeAdapter", "Binding item: ${plant.name}")
+    }
+
+    override fun getItemCount(): Int = plants.size
 
 }

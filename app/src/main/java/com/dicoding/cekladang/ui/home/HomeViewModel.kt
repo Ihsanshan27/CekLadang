@@ -3,12 +3,23 @@ package com.dicoding.cekladang.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.cekladang.data.local.entity.Plants
 
 class HomeViewModel : ViewModel() {
 
-    private val _home = MutableLiveData<List<String>>().apply {
-        value = listOf("Tanaman 1", "Tanaman 2", "Tanaman 3", "Tanaman 4", "Tanaman 5")
+    private val _plantList = MutableLiveData<List<Plants>>()
+    val plantList: LiveData<List<Plants>> get() = _plantList
+
+    init {
+        loadPlants()
     }
-    val home: LiveData<List<String>> = _home
+
+    private fun loadPlants() {
+        // Data statis tanaman
+        _plantList.value = listOf(
+            Plants(1, "Jagung", "corn_labels.txt", "corn_model_with_metadata.tflite"),
+            Plants(2, "Kedelai", "soybean_label.txt", "soybean_model.tflite"),
+        )
+    }
 
 }

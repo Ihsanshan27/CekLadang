@@ -15,6 +15,7 @@ import com.canhub.cropper.CropImageOptions
 import com.canhub.cropper.CropImageView
 import com.dicoding.cekladang.R
 import com.dicoding.cekladang.databinding.ActivityAnalisisBinding
+import com.dicoding.cekladang.helper.ImageClassifierHelper
 import com.dicoding.cekladang.ui.dashboard.HistoryFragment
 import com.dicoding.cekladang.ui.result.ResultActivity
 import com.dicoding.cekladang.ui.utils.getImageUri
@@ -26,11 +27,45 @@ class AnalisisActivity : AppCompatActivity() {
     private var currentImageUri: Uri? = null
     private var croppedImageUri: Uri? = null
 
+    private var plantName: String? = null
+    private var labelName: String? = null
+    private var modelPath: String? = null
+
+    private lateinit var imageClassifierHelper: ImageClassifierHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityAnalisisBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        plantName = intent.getStringExtra("PLANT_NAME")
+        labelName = intent.getStringExtra("LABEL_NAME")
+        modelPath = intent.getStringExtra("MODEL_PATH")
+
+        // Pastikan data diterima dengan benar
+        Log.d(TAG, "Name: $plantName, Label: $labelName  Model: $modelPath")
+
+
+        // Update model dan label di ImageClassifierHelper
+        imageClassifierHelper =
+            ImageClassifierHelper(this, object : ImageClassifierHelper.ClassifierListener {
+                override fun onError(errorMessage: String) {
+                    showToast(errorMessage)
+                }
+
+                override fun onResults(results: List<String>, inferenceTime: Long) {
+                    // Tampilkan hasil klasifikasi
+                    Log.d(TAG, "Hasil klasifikasi: $results")
+                    // Lakukan tindakan selanjutnya sesuai hasil
+                }
+            })
+
+        labelName?.let { label ->
+            modelPath?.let { model ->
+                imageClassifierHelper.updateModelAndLabels(label, model)
+            }
+        }
 
         savedInstanceState?.let {
             val uriString = it.getString("imageUri")
@@ -101,12 +136,15 @@ class AnalisisActivity : AppCompatActivity() {
             Log.e(TAG, "showImage: currentImageUri is null")
         }
     }
+
     private fun moveToResult() {
         Log.d(TAG, "moveToResult called")
         val intent = Intent(this, ResultActivity::class.java)
         croppedImageUri?.let { uri ->
             Log.d(TAG, "moveToResult: croppedImageUri: $uri")
             intent.putExtra(ResultActivity.IMAGE_URI, uri.toString())
+            intent.putExtra("LABEL_NAME", labelName)  // Kirimkan labelName
+            intent.putExtra("MODEL_PATH", modelPath)  // Kirimkan modelPath
             startActivity(intent)
         } ?: run {
             Log.e(TAG, "moveToResult: croppedImageUri is null")

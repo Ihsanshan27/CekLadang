@@ -34,8 +34,14 @@ class ImageClassifierHelper(
     private var outputProbabilityBuffer: TensorBuffer? = null
     private var probabilityProcessor: TensorProcessor? = null
 
-    private val label = "corn_labels.txt"
-    private val model = "corn_model_with_metadata.tflite"
+    private var label = "corn_labels.txt"
+    private var model = "corn_model_with_metadata.tflite"
+
+    fun updateModelAndLabels(labelPath: String, modelPath: String) {
+        this.label = labelPath
+        this.model = modelPath
+        init()  // Reinitialize the model with the new paths
+    }
 
     fun init() {
         try {

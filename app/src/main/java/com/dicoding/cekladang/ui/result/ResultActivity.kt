@@ -16,6 +16,11 @@ import com.dicoding.cekladang.helper.ImageClassifierHelper
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
 
+    private var labelName: String? = null
+    private var modelPath: String? = null
+    private lateinit var imageClassifierHelper: ImageClassifierHelper
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)
@@ -26,12 +31,12 @@ class ResultActivity : AppCompatActivity() {
             it.title = "Hasil Analisis"
         }
 
-        val imageUriString = intent.getStringExtra(IMAGE_URI)
-        if (imageUriString != null) {
-            val imageUri = Uri.parse(imageUriString)
-            displayImage(imageUri)
+        labelName = intent.getStringExtra("LABEL_NAME")
+        modelPath = intent.getStringExtra("MODEL_PATH")
 
-            val imageClassifierHelper = ImageClassifierHelper(
+        // Cek apakah imageClassifierHelper sudah diinisialisasi
+        if (!::imageClassifierHelper.isInitialized) {
+            imageClassifierHelper = ImageClassifierHelper(
                 context = this,
                 classifierListener = object : ImageClassifierHelper.ClassifierListener {
                     override fun onError(errorMessage: String) {
@@ -43,15 +48,32 @@ class ResultActivity : AppCompatActivity() {
                     }
                 }
             )
-            imageClassifierHelper.init()
-            val bitmap = uriToBitmap(imageUri)
-            if (bitmap != null) {
-                imageClassifierHelper.classifyImage(bitmap)
+            // Update model dan label hanya sekali
+            if (labelName != null && modelPath != null) {
+                imageClassifierHelper.updateModelAndLabels(labelName!!, modelPath!!)
+                imageClassifierHelper.init()
+            }
+        }
+
+        if (labelName != null && modelPath != null) {
+            Log.d(TAG, "Received label: $labelName and model path: $modelPath")
+            val imageUriString = intent.getStringExtra(IMAGE_URI)
+            if (imageUriString != null) {
+                val imageUri = Uri.parse(imageUriString)
+                displayImage(imageUri)
+
+                val bitmap = uriToBitmap(imageUri)
+                if (bitmap != null) {
+                    imageClassifierHelper.classifyImage(bitmap)
+                } else {
+                    Log.e(TAG, "Failed to convert Uri to Bitmap")
+                }
             } else {
-                Log.e(TAG, "Failed to convert Uri to Bitmap")
+                Log.e(TAG, "No image URI provided")
+                finish()
             }
         } else {
-            Log.e(TAG, "No image URI provided")
+            Log.e(TAG, "Missing label or model path")
             finish()
         }
 
@@ -61,7 +83,6 @@ class ResultActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-
     }
 
     private fun displayImage(uri: Uri) {
@@ -133,7 +154,7 @@ class ResultActivity : AppCompatActivity() {
 
     companion object {
         const val IMAGE_URI = "img_uri"
-        const val TAG = "imagePicker"
+        const val TAG = "AnalisisActivity"
         const val RESULT_TEXT = "result_text"
         const val REQUEST_HISTORY_UPDATE = 1
     }
