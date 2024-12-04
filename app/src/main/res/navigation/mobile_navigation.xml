@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_history"
-        android:name="com.dicoding.cekladang.ui.dashboard.HistoryFragment"
+        android:name="com.dicoding.cekladang.ui.history.HistoryFragment"
         android:label="@string/title_history"
         tools:layout="@layout/fragment_history" />
 </navigation>

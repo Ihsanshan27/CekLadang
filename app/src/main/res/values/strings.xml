@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_history">History</string>
 
-<!--    login-->
+    <!--    login-->
     <string name="tvWelcome">Selamat Datang!</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -16,7 +16,7 @@
     <string name="btndaftar">Daftar</string>
     <string name="or">Atau</string>
 
-<!--    daftar-->
+    <!--    daftar-->
     <string name="tvRegister">Buat akun anda</string>
     <string name="name">Name</string>
 
@@ -39,6 +39,8 @@
     <string name="camera">kamera</string>
 
     <string name="btn_save">Simpan</string>
+    <string name="btn_delete">Hapus</string>
+    <string name="timestamp">Tanggal</string>
     <string name="result_analisis">Result Analisis</string>
     <string name="Title_analisis">Title Analisis</string>
     <string name="title_activity_detail">DetailActivity</string>

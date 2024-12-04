@@ -25,6 +25,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -53,7 +54,7 @@
             android:ellipsize="end"
             android:maxLines="3"
             android:text="@string/title_analisis"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_item_photo"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_name" />
@@ -68,10 +69,31 @@
             android:ellipsize="end"
             android:maxLines="3"
             android:text="@string/description"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_item_photo"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_hasil" />
+
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="@string/timestamp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/secondaryColor"
+            android:paddingStart="16dp"
+            android:text="@string/btn_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/img_item_photo"
+            app:layout_constraintStart_toStartOf="@+id/img_item_photo"
+            app:layout_constraintTop_toBottomOf="@+id/img_item_photo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

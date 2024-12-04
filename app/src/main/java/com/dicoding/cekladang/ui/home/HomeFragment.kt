@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.dicoding.cekladang.data.local.entity.Plants
 import com.dicoding.cekladang.databinding.FragmentHomeBinding
 import com.dicoding.cekladang.ui.adapter.HomeAdapter
 import com.dicoding.cekladang.ui.analisis.AnalisisActivity
-import com.dicoding.cekladang.ui.result.ResultActivity
 
 class HomeFragment : Fragment() {
 
@@ -32,7 +31,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         // Setup RecyclerView
-        binding.rvHome.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvHome.layoutManager = GridLayoutManager(requireContext(), 2)
 
         // Observe data plantList dari ViewModel
         homeViewModel.plantList.observe(viewLifecycleOwner) { plants ->

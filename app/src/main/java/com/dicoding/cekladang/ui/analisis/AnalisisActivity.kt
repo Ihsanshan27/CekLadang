@@ -16,7 +16,6 @@ import com.canhub.cropper.CropImageView
 import com.dicoding.cekladang.R
 import com.dicoding.cekladang.databinding.ActivityAnalisisBinding
 import com.dicoding.cekladang.helper.ImageClassifierHelper
-import com.dicoding.cekladang.ui.dashboard.HistoryFragment
 import com.dicoding.cekladang.ui.result.ResultActivity
 import com.dicoding.cekladang.ui.utils.getImageUri
 
@@ -75,7 +74,7 @@ class AnalisisActivity : AppCompatActivity() {
             }
         }
 
-        val data = Intent(this, HistoryFragment::class.java)
+//        val data = Intent(this, HistoryFragment::class.java)
 
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.cameraButton.setOnClickListener { startCamera() }
@@ -143,6 +142,7 @@ class AnalisisActivity : AppCompatActivity() {
         croppedImageUri?.let { uri ->
             Log.d(TAG, "moveToResult: croppedImageUri: $uri")
             intent.putExtra(ResultActivity.IMAGE_URI, uri.toString())
+            intent.putExtra("PLANT_NAME", plantName)  // Kirimkan plantName
             intent.putExtra("LABEL_NAME", labelName)  // Kirimkan labelName
             intent.putExtra("MODEL_PATH", modelPath)  // Kirimkan modelPath
             startActivity(intent)
@@ -152,10 +152,10 @@ class AnalisisActivity : AppCompatActivity() {
         }
     }
 
-    private fun showCroppedImage(uri: Uri) {
-        binding.previewImageView.setImageURI(uri)
-        croppedImageUri = uri
-    }
+//    private fun showCroppedImage(uri: Uri) {
+//        binding.previewImageView.setImageURI(uri)
+//        croppedImageUri = uri
+//    }
 
     private fun launchCropActivity(uri: Uri) {
         cropActivityResultLauncher.launch(
